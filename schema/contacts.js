@@ -1,11 +1,11 @@
-const { Schema, model } = require("mongoose");
-const Joi = require("joi");
+const { Schema, model } = require('mongoose');
+const Joi = require('joi');
 
 const schema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Set name for contact"],
+      required: [true, 'Set name for contact'],
     },
     email: {
       type: String,
@@ -17,23 +17,27 @@ const schema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    },
   },
   {
     versionKey: false,
-  }
+  },
 );
 
-const Contacts = model("contacts", schema);
+const Contacts = model('contacts', schema);
 
 const contactAddSchema = Joi.object({
   name: Joi.string().required().messages({
-    "any.required": "missing required name field",
+    'any.required': 'missing required name field',
   }),
   email: Joi.string().required().messages({
-    "any.required": "missing required email field",
+    'any.required': 'missing required email field',
   }),
   phone: Joi.string().required().messages({
-    "any.required": "missing required phone field",
+    'any.required': 'missing required phone field',
   }),
   favorite: Joi.boolean(),
 });
