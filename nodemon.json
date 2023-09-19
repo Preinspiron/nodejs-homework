@@ -4,6 +4,7 @@
     "models/contacts.json"
   ],
   "watch": [
-    ".env"
+    ".env",
+    "**/**.js"
   ]
 }
